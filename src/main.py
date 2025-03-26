@@ -1,5 +1,6 @@
 import os
 from core import query_vision_model
+from core.report_generator import generate_report
 
 def main():
     """命令行入口函数"""
@@ -16,6 +17,10 @@ def main():
     if not custom_prompt:
         custom_prompt = "请用中文尽可能详细的描述这张图片"
     
+    # 用于存储图片路径和回复
+    processed_images = []
+    responses = []
+    
     # 遍历所有图片文件
     for idx, image_file in enumerate(image_files):
         image_path = os.path.join(raw_dir, image_file)
@@ -29,6 +34,15 @@ def main():
         print("\n模型回复:")
         print(response)
         print("-" * 50)  # 添加分隔线，使输出更清晰
+        
+        # 记录处理结果
+        processed_images.append(image_path)
+        responses.append(response)
+    
+    # 生成HTML报告
+    print("\n正在生成HTML报告...")
+    report_path = generate_report(processed_images, responses)
+    print(f"报告已生成: {os.path.abspath(report_path)}")
 
 if __name__ == "__main__":
     main() 

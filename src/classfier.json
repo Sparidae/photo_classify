@@ -1,0 +1,20 @@
+{
+    
+    "name": "Initial",
+    "prompt": "这张图片应该分类到照片还是非照片？",
+    "options": [
+        {
+            "name": "照片",
+            "prompt": "",
+            "options": [
+                
+            ]
+        },
+        {
+            "name": "非照片",
+            "prompt": "",
+            "options": [
+            ]
+        }
+    ]
+}
